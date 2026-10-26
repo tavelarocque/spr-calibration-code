@@ -1,0 +1,41 @@
+{
+  "cells": "0-based; a tuple lists the cells in the order the Pointer visits them",
+  "info": {
+    "eps_certified": "1/2",
+    "eps_upper": "1/2",
+    "source": "spr obl grid",
+    "upper_certified": true
+  },
+  "n": 9,
+  "s": 2,
+  "tuples": [
+    [
+      [
+        1,
+        0
+      ],
+      "1/4"
+    ],
+    [
+      [
+        7,
+        8
+      ],
+      "1/4"
+    ],
+    [
+      [
+        1,
+        2
+      ],
+      "1/4"
+    ],
+    [
+      [
+        7,
+        6
+      ],
+      "1/4"
+    ]
+  ]
+}

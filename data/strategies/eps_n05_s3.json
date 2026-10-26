@@ -1,0 +1,45 @@
+{
+  "cells": "0-based; a tuple lists the cells in the order the Pointer visits them",
+  "info": {
+    "eps_certified": "1/3",
+    "eps_upper": "6004799505167743/18014398509481984",
+    "source": "spr obl grid",
+    "upper_certified": true
+  },
+  "n": 5,
+  "s": 3,
+  "tuples": [
+    [
+      [
+        2,
+        1,
+        0
+      ],
+      "1/3"
+    ],
+    [
+      [
+        2,
+        3,
+        4
+      ],
+      "1/3"
+    ],
+    [
+      [
+        2,
+        1,
+        3
+      ],
+      "1/6"
+    ],
+    [
+      [
+        2,
+        3,
+        1
+      ],
+      "1/6"
+    ]
+  ]
+}

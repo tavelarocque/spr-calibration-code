@@ -1,0 +1,17 @@
+[package]
+name = "spr-oblivious"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+highs.workspace = true
+num-bigint.workspace = true
+num-integer.workspace = true
+highs-sys.workspace = true
+num-rational.workspace = true
+num-traits.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
