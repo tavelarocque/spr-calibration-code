@@ -32,9 +32,9 @@ expect() {  # expect NAME PATTERN CMD...: CMD must succeed and print a line matc
 }
 
 step "toolchain"
-rustc --version; cargo --version; python3 --version
-python3 -c "import sympy; print('sympy', sympy.__version__)"
 echo "temporary output: $OUT"
+check "rustc and cargo present" bash -c 'rustc --version && cargo --version'
+check "python3 with sympy" python3 -c "import sys, sympy; print(sys.version.split()[0], 'sympy', sympy.__version__)"
 
 step "build and test (cargo test --release)"
 check "cargo build" cargo build --release -q

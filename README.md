@@ -1,5 +1,7 @@
 # spr-calibration-code
 
+[![verify](https://github.com/tavelarocque/spr-calibration-code/actions/workflows/verify.yml/badge.svg)](https://github.com/tavelarocque/spr-calibration-code/actions/workflows/verify.yml)
+
 Code and data for exact computations on the sign preservation with reuse game.
 Author: Tave La Rocque.
 
@@ -43,8 +45,10 @@ oblivious brackets and closed forms (`oblivious_v1.csv`), the certified strategi
 
 ## Checking everything
 
-You need a stable Rust toolchain (`rust-toolchain.toml`), CMake and a C++ compiler (the
-`highs-sys` crate builds HiGHS from source), and Python 3 with sympy. Then run
+You need a stable Rust toolchain (`rust-toolchain.toml`), CMake and a C++ You need a stable Rust toolchain (`rust-toolchain.toml`), CMake, a C++ compiler and libclang
+(the `highs-sys` crate builds HiGHS from source and generates bindings with bindgen), and
+Python 3 with the packages in `requirements.txt` (`python3 -m pip install -r requirements.txt`).
+Then run
 
 ```
 scripts/verify_all.sh
@@ -58,7 +62,8 @@ every stored oblivious strategy exactly with both verifiers, re-certifies the fa
 instances and ten closed forms, checks the golden constructions exactly in Q(sqrt 5), and checks
 several derived counts and statements against the data. It takes about five minutes and under
 0.5 GB of memory on an 8 GB laptop, writes only to a temporary directory, and ends with
-`verify_all: PASS` or a list of the checks that failed. The longer runs that produced the full
+`verify_all: PASS` or a list of the checks that failed, with a non-zero exit status. The same
+script runs on every push in GitHub Actions (`.github/workflows/verify.yml`). The longer runs that produced the full
 tables are opt-in through `scripts/verify_long.sh`; `REPRODUCE.md` lists every command, its
 measured cost and the file it checks.
 

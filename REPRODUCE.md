@@ -22,6 +22,9 @@ Measured on an Apple silicon laptop with 8 GB RAM and other applications open: a
 wall time with the workspace already built (add about 35 s for a cold build), 123 checks, and
 at most about 330 MB for any single step. It writes only to a temporary directory.
 
+The default verification also runs automatically on GitHub Actions on a fresh Ubuntu machine
+for every push and pull request (`.github/workflows/verify.yml`).
+
 The long runs are opt-in, one at a time: `scripts/verify_long.sh TARGET` (table below).
 
 ## Toolchain
@@ -31,7 +34,7 @@ The long runs are opt-in, one at a time: `scripts/verify_long.sh TARGET` (table 
 | rustc, cargo | 1.99.1 (stable; `rust-toolchain.toml`) |
 | HiGHS bindings | `highs` crate 2.4, `highs-sys` 1.15 (HiGHS is built by cargo) |
 | Python | 3.9.6 |
-| sympy | 1.14.0 (closed forms) |
+| sympy | 1.14.0 (closed forms); all Python versions are pinned in `requirements.txt` |
 | scipy | 1.13.1 (only the search scripts `golden.py` and `cube_compress.py`) |
 
 `scripts/verify_golden.py`, `compare_values.py`, `recertify_obl.py` and `make_tables.py` use
