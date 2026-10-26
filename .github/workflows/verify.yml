@@ -15,10 +15,23 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Install build dependencies for highs-sys (CMake, C++ compiler, libclang for bindgen)
+      # highs-sys builds HiGHS with CMake and a C++ compiler and generates bindings with
+      # bindgen, which needs libclang. The runner image normally ships all three; apt is only
+      # a fallback, because the package mirror can be very slow.
+      - name: Check build dependencies for highs-sys (CMake, C++ compiler, libclang)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake g++ clang libclang-dev
+          missing=""
+          command -v cmake >/dev/null || missing="$missing cmake"
+          command -v c++ >/dev/null || missing="$missing g++"
+          ls /usr/lib/llvm-*/lib/libclang*.so* >/dev/null 2>&1 || missing="$missing libclang-dev"
+          if [ -n "$missing" ]; then
+            echo "installing:$missing"
+            sudo timeout 900 apt-get update
+            sudo timeout 900 apt-get install -y --no-install-recommends $missing
+          fi
+          cmake --version | head -1
+          c++ --version | head -1
+          ls /usr/lib/llvm-*/lib/libclang*.so* | head -3
 
       - name: Install the Rust toolchain from rust-toolchain.toml
         run: |
