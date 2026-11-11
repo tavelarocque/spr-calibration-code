@@ -71,8 +71,6 @@ measured cost and the file it checks.
 
 A write-up of the results is in preparation.
 
-Parts of this code were developed with AI assistance (Claude, Anthropic).
-
 ## License
 
 MIT; see `LICENSE`.
